@@ -879,9 +879,37 @@
         <div class="footer-col">
           <h5>Legal</h5>
           <ul>
-            <li><a href="#">MahaRERA Certificate</a></li>
-            <li><a href="#">Terms &amp; Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <!-- Find these three links in your footer and replace them -->
+            <li>
+              <a
+                href="#"
+                onclick="
+                  openModal('modal-rera');
+                  return false;
+                "
+                >MahaRERA Certificate</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="
+                  openModal('modal-terms');
+                  return false;
+                "
+                >Terms &amp; Conditions</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="
+                  openModal('modal-privacy');
+                  return false;
+                "
+                >Privacy Policy</a
+              >
+            </li>
           </ul>
         </div>
         <div class="footer-col">
@@ -902,6 +930,235 @@
       <div class="footer-bot">
         <p>© 2025 Sandeep Dwellers Pvt. Ltd. All rights reserved.</p>
         <p>MahaRERA PP1190002501173 · Valid 10/10/2025 – 30/09/2032</p>
+      </div>
+      <!-- ── MODALS ── -->
+
+      <!-- MahaRERA Certificate Modal -->
+      <div class="modal-overlay" id="modal-rera">
+        <div class="modal-box">
+          <div class="modal-header">
+            <div class="modal-title">MahaRERA Certificate</div>
+            <button class="modal-close" onclick="closeModal('modal-rera')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-rera-badge">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="modal-rera-label">Registration Number</div>
+                <div class="modal-rera-num">PP1190002501173</div>
+              </div>
+            </div>
+            <div class="modal-info-grid">
+              <div class="modal-info-item">
+                <div class="modal-info-label">Project Name</div>
+                <div class="modal-info-val">SDPL Suvarnabhumi</div>
+              </div>
+              <div class="modal-info-item">
+                <div class="modal-info-label">Developer</div>
+                <div class="modal-info-val">Sandeep Dwellers Pvt. Ltd.</div>
+              </div>
+              <div class="modal-info-item">
+                <div class="modal-info-label">Plot Location</div>
+                <div class="modal-info-val">
+                  KH.NO. 450/1, 450/2, PH.NO. 24, Mouza Gondkheri, Gondkhairi,
+                  Kalameshwar, Nagpur – 440023
+                </div>
+              </div>
+              <div class="modal-info-item">
+                <div class="modal-info-label">Registered Office</div>
+                <div class="modal-info-val">
+                  Nagpur (M Corp.), Nagpur (Urban), Nagpur – 440001
+                </div>
+              </div>
+              <div class="modal-info-item">
+                <div class="modal-info-label">Registration Valid</div>
+                <div class="modal-info-val">10/10/2025 — 30/09/2032</div>
+              </div>
+              <div class="modal-info-item">
+                <div class="modal-info-label">Regulatory Authority</div>
+                <div class="modal-info-val">
+                  Maharashtra Real Estate Regulatory Authority (MahaRERA)
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://maharera.maharashtra.gov.in"
+              target="_blank"
+              class="modal-ext-link"
+            >
+              Verify on MahaRERA Website →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms & Conditions Modal -->
+      <div class="modal-overlay" id="modal-terms">
+        <div class="modal-box">
+          <div class="modal-header">
+            <div class="modal-title">Terms &amp; Conditions</div>
+            <button class="modal-close" onclick="closeModal('modal-terms')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body modal-scroll">
+            <p class="modal-text">
+              By accessing this website and submitting an enquiry, you agree to
+              the following terms:
+            </p>
+
+            <div class="modal-section">
+              <div class="modal-section-title">1. Information Accuracy</div>
+              <p class="modal-text">
+                All information provided on this website, including plot sizes,
+                amenities, prices and renderings, are indicative and subject to
+                change without prior notice. Final details will be as per the
+                registered sale agreement.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">2. No Binding Offer</div>
+              <p class="modal-text">
+                This website does not constitute a legal offer or binding
+                commitment. Any interest expressed through this site does not
+                guarantee plot allocation. Allocation is subject to availability
+                and formal agreement execution.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">3. MahaRERA Compliance</div>
+              <p class="modal-text">
+                This project is registered under MahaRERA (Registration No.
+                PP1190002501173). All transactions shall be governed by the
+                Maharashtra Real Estate (Regulation and Development) Act, 2016.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">
+                4. Enquiry &amp; Communication
+              </div>
+              <p class="modal-text">
+                By submitting an enquiry, you consent to being contacted by
+                Sandeep Dwellers Pvt. Ltd. or its authorised representatives via
+                phone, WhatsApp, or email regarding this project.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">5. Intellectual Property</div>
+              <p class="modal-text">
+                All content on this website including images, renders, logos,
+                text and design are the intellectual property of Sandeep
+                Dwellers Pvt. Ltd. Reproduction without written permission is
+                prohibited.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">6. Governing Law</div>
+              <p class="modal-text">
+                These terms are governed by the laws of India. Any disputes
+                shall be subject to the exclusive jurisdiction of courts in
+                Nagpur, Maharashtra.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy Policy Modal -->
+      <div class="modal-overlay" id="modal-privacy">
+        <div class="modal-box">
+          <div class="modal-header">
+            <div class="modal-title">Privacy Policy</div>
+            <button class="modal-close" onclick="closeModal('modal-privacy')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body modal-scroll">
+            <p class="modal-text">
+              Sandeep Dwellers Pvt. Ltd. is committed to protecting your
+              personal information. This policy explains how we collect, use and
+              safeguard your data.
+            </p>
+
+            <div class="modal-section">
+              <div class="modal-section-title">Information We Collect</div>
+              <p class="modal-text">
+                When you submit an enquiry, we collect your name, phone number,
+                email address, and plot size preference. We do not collect any
+                financial or payment information through this website.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">How We Use Your Information</div>
+              <p class="modal-text">
+                Your information is used solely to respond to your property
+                enquiry, schedule site visits, and share relevant project
+                updates. We do not use your data for unrelated marketing.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">Data Sharing</div>
+              <p class="modal-text">
+                We do not sell, rent, or share your personal information with
+                any third parties except our authorised sales representatives
+                who assist in responding to your enquiry.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">Data Security</div>
+              <p class="modal-text">
+                All form submissions are encrypted and transmitted securely. We
+                implement appropriate technical measures to protect your data
+                against unauthorised access or disclosure.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">Cookies</div>
+              <p class="modal-text">
+                This website does not use tracking cookies or analytics that
+                identify individual users. Basic session data may be used to
+                ensure the website functions correctly.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">Your Rights</div>
+              <p class="modal-text">
+                You may request deletion of your personal data at any time by
+                calling us at +91 976 555 0608 or writing to us. We will process
+                your request within 7 working days.
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <div class="modal-section-title">Contact</div>
+              <p class="modal-text">
+                For any privacy-related queries, contact Sandeep Dwellers Pvt.
+                Ltd., Nagpur (Urban), Nagpur – 440001 or call +91 976 555 0608.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   </body>

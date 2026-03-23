@@ -216,3 +216,27 @@ document.getElementById("cf").addEventListener("submit", function (e) {
       btn.textContent = "Send Enquiry →";
     });
 });
+
+// ── MODALS ──
+function openModal(id) {
+  document.getElementById(id).classList.add("active");
+  document.body.style.overflow = "hidden"; // prevent background scroll
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove("active");
+  document.body.style.overflow = "";
+}
+// Close on overlay click (outside the box)
+document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+  overlay.addEventListener("click", function (e) {
+    if (e.target === this) closeModal(this.id);
+  });
+});
+// Close on Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal-overlay.active").forEach((m) => {
+      closeModal(m.id);
+    });
+  }
+});
