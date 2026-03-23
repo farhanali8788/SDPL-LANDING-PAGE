@@ -177,16 +177,42 @@ document.getElementById("cf").addEventListener("submit", function (e) {
 
   btn.disabled = true;
   btn.textContent = "Sending…";
-  setTimeout(() => {
-    submitCount++;
-    lastTime = Date.now();
-    show(
-      "ok",
-      `✓ Thank you, ${fn}! We'll reach out to you within 24 hours. For immediate help, call +91 976 555 0608.`,
-    );
-    document.getElementById("cf").reset();
-    genCaptcha();
-    btn.disabled = false;
-    btn.textContent = "Send Enquiry →";
-  }, 1300);
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+
+  const formData = {
+    firstName: fn,
+    lastName: ln,
+    phone: ph,
+    email: em,
+    plotSize: document.getElementById("ps").value,
+    message: document.getElementById("msg").value.trim(),
+  };
+
+  fetch("https://formspree.io/f/myknlgvk", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  })
+    .then((res) => {
+      if (res.ok) {
+        submitCount++;
+        lastTime = Date.now();
+        show(
+          "ok",
+          `✓ Thank you, ${fn}! We'll reach out within 24 hours. For immediate help call +91 976 555 0608.`,
+        );
+        document.getElementById("cf").reset();
+        genCaptcha();
+      } else {
+        show("err", "Something went wrong. Please call +91 976 555 0608.");
+      }
+    })
+    .catch(() => {
+      show("err", "Network error. Please call +91 976 555 0608.");
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.textContent = "Send Enquiry →";
+    });
 });

@@ -111,14 +111,15 @@ nav:not(.scrolled) .nav-wordmark img {
   z-index: 1;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .nav-wordmark img {
-  height: 272px;
+  height: 58px;
   width: auto;
+  /* max-width: 180px; */
   display: block;
   object-fit: contain;
-  transition: filter 0.3s;
 }
 .nav-right {
   display: flex;
@@ -585,9 +586,9 @@ nav:not(.scrolled) .nav-wordmark img {
   color: var(--paper);
   line-height: 1.1;
 }
-.amenities-h2 em {
+.amenities-h2 b {
   color: var(--gl);
-  font-style: italic;
+  font-style: normal;
 }
 .amenities-count {
   font-family: "Bebas Neue", sans-serif;
@@ -600,19 +601,20 @@ nav:not(.scrolled) .nav-wordmark img {
 .amen-wall {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
   gap: 2px;
 }
+
 .amen-cell {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(200, 162, 74, 0.08);
-  padding: 32px 26px 28px;
   position: relative;
   overflow: hidden;
   transition:
     background 0.3s,
     border-color 0.3s;
   cursor: default;
+  display: flex;
+  flex-direction: column;
 }
 .amen-cell:hover {
   background: rgba(200, 162, 74, 0.06);
@@ -626,6 +628,41 @@ nav:not(.scrolled) .nav-wordmark img {
 .amen-cell.featured:hover {
   background: rgba(123, 28, 28, 0.35);
 }
+
+.amen-img {
+  width: 100%;
+  height: 270px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.amen-cell.featured .amen-img {
+  height: 300px;
+}
+.amen-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7) saturate(1.1);
+  transition:
+    transform 0.5s ease,
+    filter 0.3s;
+}
+.amen-cell:hover .amen-img img {
+  transform: scale(1.06);
+  filter: brightness(0.85) saturate(1.2);
+}
+
+#yoga_space {
+  background-position: 10% bottom;
+}
+
+.amen-body {
+  padding: 20px;
+  position: relative;
+  flex: 1;
+}
+
 .amen-num {
   font-family: "Bebas Neue", sans-serif;
   font-size: 4rem;
@@ -667,6 +704,20 @@ nav:not(.scrolled) .nav-wordmark img {
   width: 100%;
 }
 
+@media (max-width: 1024px) {
+  .amen-wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .amen-cell.featured {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 640px) {
+  .amen-wall {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── PLOTS — HORIZONTAL LIST ── */
 .plots {
   background: var(--paper2);
@@ -687,8 +738,10 @@ nav:not(.scrolled) .nav-wordmark img {
   color: var(--rd);
   line-height: 1.1;
 }
-.plots-h2 em {
-  font-style: italic;
+.plots-h2 b {
+  color: var(--gl);
+
+  font-style: normal;
 }
 .plots-intro {
   font-size: 0.88rem;
@@ -821,120 +874,14 @@ nav:not(.scrolled) .nav-wordmark img {
 .location {
   background: var(--ink);
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 42% 58%; /* was 50% 50% — map gets more room */
   min-height: 80vh;
-}
-.loc-map-side {
-  position: relative;
-  overflow: hidden;
-  background: var(--rd);
-}
-.loc-grid-bg {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(200, 162, 74, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200, 162, 74, 0.07) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.loc-pin-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
   align-items: center;
-}
-.loc-pin-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: rgba(200, 162, 74, 0.15);
-  border: 2px solid var(--g);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(200, 162, 74, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 0 28px rgba(200, 162, 74, 0);
-  }
-}
-.loc-pin-dot {
-  width: 14px;
-  height: 14px;
-  background: var(--g);
-  border-radius: 50%;
-}
-.loc-pin-line {
-  width: 1px;
-  height: 36px;
-  background: var(--g);
-}
-.loc-address-card {
-  position: absolute;
-  bottom: 36px;
-  left: 36px;
-  right: 36px;
-  background: rgba(17, 8, 8, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(200, 162, 74, 0.25);
-  padding: 22px 24px;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 12px) 0,
-    100% 12px,
-    100% 100%,
-    12px 100%,
-    0 calc(100% - 12px)
-  );
-}
-.loc-addr-title {
-  font-family: "Bebas Neue", sans-serif;
-  letter-spacing: 3px;
-  color: var(--g);
-  font-size: 0.78rem;
-  margin-bottom: 6px;
-}
-.loc-addr-val {
-  font-family: "Playfair Display", serif;
-  font-size: 1rem;
-  color: var(--paper);
-}
-.loc-addr-sub {
-  font-size: 0.75rem;
-  color: rgba(247, 242, 234, 0.45);
-  margin-top: 4px;
-}
-.loc-map-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 14px;
-  font-size: 0.68rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--g);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(200, 162, 74, 0.3);
-  padding-bottom: 2px;
-  transition:
-    border-color 0.2s,
-    color 0.2s;
-}
-.loc-map-link:hover {
-  color: var(--gl);
-  border-color: var(--gl);
 }
 
+/* ── LEFT: INFO SIDE ── */
 .loc-info-side {
-  padding: 9% 8%;
+  padding: 8% 5% 8% 7%; /* was 8% 7% 8% 8% */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -947,9 +894,9 @@ nav:not(.scrolled) .nav-wordmark img {
   line-height: 1.15;
   margin-bottom: 36px;
 }
-.loc-h2 em {
+.loc-h2 b {
   color: var(--gl);
-  font-style: italic;
+  font-style: normal;
 }
 .loc-items {
   display: flex;
@@ -958,11 +905,12 @@ nav:not(.scrolled) .nav-wordmark img {
 }
 .loc-item {
   display: grid;
-  grid-template-columns: 50px 1fr;
+  grid-template-columns: 52px 1fr;
   gap: 18px;
   align-items: start;
-  padding: 20px 0;
+  padding: 16px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s;
 }
 .loc-item:last-child {
   border-bottom: none;
@@ -977,20 +925,212 @@ nav:not(.scrolled) .nav-wordmark img {
   justify-content: center;
   font-size: 1.1rem;
   flex-shrink: 0;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.loc-item:hover .loc-item-icon {
+  background: rgba(200, 162, 74, 0.14);
+  border-color: rgba(200, 162, 74, 0.35);
 }
 .loc-item-label {
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--g);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.loc-item-val {
+  font-size: 0.87rem;
+  color: rgba(247, 242, 234, 0.7);
+  line-height: 1.6;
+}
+
+/* ── RIGHT: MAP CARD SIDE ── */
+.loc-map-side {
+  padding: 5% 5% 5% 2%; /* was 6% 7% 6% 4% — less padding = bigger card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The floating card that contains the full map image */
+.loc-map-card {
+  width: 100%;
+  max-width: 100%; /* was 560px — now fills the full column */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(200, 162, 74, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(200, 162, 74, 0.08),
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+  transition:
+    box-shadow 0.4s,
+    transform 0.4s;
+}
+.loc-map-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(200, 162, 74, 0.18),
+    0 40px 100px rgba(0, 0, 0, 0.65),
+    0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Image container — no fixed height, shows FULL image */
+.loc-map-card-inner {
+  position: relative;
+  width: 100%;
+  line-height: 0; /* removes bottom gap under img */
+}
+.loc-map-card-inner img {
+  width: 100%;
+  height: auto; /* KEY: auto height = full image, no cropping */
+  display: block;
+  object-fit: unset; /* override any inherited object-fit */
+}
+
+/* Pin overlay — positioned relative to map card */
+.loc-pin-overlay {
+  position: absolute;
+  top: 57%; /* was 50% — moves pin down to Suvarnabhumi */
+  left: 14%; /* was 48% — moves pin left to Suvarnabhumi */
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
+.loc-pin-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(200, 162, 74, 0.2);
+  border: 2px solid var(--g);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 162, 74, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(200, 162, 74, 0);
+  }
+}
+.loc-pin-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--g);
+  border-radius: 50%;
+}
+.loc-pin-line {
+  width: 1px;
+  height: 24px;
+  background: var(--g);
+}
+.loc-pin-label {
+  background: rgba(17, 8, 8, 0.85);
+  border: 1px solid rgba(200, 162, 74, 0.35);
+  color: var(--gl);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  white-space: nowrap;
+  margin-top: 4px;
+  backdrop-filter: blur(6px);
+}
+
+/* Address bar at bottom of card */
+.loc-card-footer {
+  background: rgba(17, 8, 8, 0.92);
+  border-top: 1px solid rgba(200, 162, 74, 0.2);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.loc-addr-title {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 2.5px;
+  color: var(--g);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.loc-addr-val {
+  font-family: "Playfair Display", serif;
+  font-size: 0.95rem;
+  color: var(--paper);
+  font-weight: 600;
+}
+.loc-addr-sub {
+  font-size: 0.7rem;
+  color: rgba(247, 242, 234, 0.4);
+  margin-top: 2px;
+}
+.loc-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--g);
-  margin-bottom: 4px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 162, 74, 0.3);
+  padding-bottom: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
-.loc-item-val {
-  font-size: 0.88rem;
-  color: rgba(247, 242, 234, 0.75);
-  line-height: 1.55;
+.loc-map-link:hover {
+  color: var(--gl);
+  border-color: var(--gl);
 }
 
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .location {
+    grid-template-columns: 1fr;
+  }
+  .loc-info-side {
+    padding: 10% 6% 6%;
+    order: 2;
+  }
+  .loc-map-side {
+    padding: 8% 6% 4%;
+    order: 1;
+  }
+  .loc-map-card {
+    max-width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .loc-info-side {
+    padding: 10% 5% 6%;
+  }
+  .loc-map-side {
+    padding: 8% 5% 4%;
+  }
+  .loc-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
 /* ── CONTACT ── */
 .contact-section {
   background: var(--paper);
@@ -1027,9 +1167,9 @@ nav:not(.scrolled) .nav-wordmark img {
   line-height: 1.1;
   margin-bottom: 20px;
 }
-.contact-h2 em {
+.contact-h2 b {
   color: var(--gl);
-  font-style: italic;
+  font-style: normal;
 }
 .contact-tagline {
   font-size: 0.88rem;
@@ -1283,8 +1423,24 @@ footer {
   color: var(--gl);
   margin-bottom: 12px;
 }
+
+/* Footer logo */
+.footer-logo {
+  margin-bottom: 16px;
+}
+.footer-logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: screen; /* blends red bg into black footer */
+}
+.footer-logo img:hover {
+  opacity: 1;
+}
+
 .footer-about {
-  font-size: 0.8rem;
+  font-size: 0.98rem;
   color: rgba(247, 242, 234, 0.3);
   line-height: 1.75;
   max-width: 260px;
@@ -1292,7 +1448,7 @@ footer {
 .footer-col h5 {
   font-family: "Bebas Neue", sans-serif;
   letter-spacing: 3px;
-  font-size: 0.72rem;
+  font-size: 1rem;
   color: var(--g);
   margin-bottom: 16px;
 }
@@ -1303,7 +1459,7 @@ footer {
   gap: 10px;
 }
 .footer-col ul a {
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   color: rgba(247, 242, 234, 0.35);
   text-decoration: none;
   transition: color 0.2s;
@@ -1318,14 +1474,14 @@ footer {
   margin-bottom: 14px;
 }
 .footer-contact-item span {
-  font-size: 0.62rem;
+  font-size: 0.78rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--g);
 }
 .footer-contact-item a,
 .footer-contact-item p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: rgba(247, 242, 234, 0.4);
   text-decoration: none;
 }
